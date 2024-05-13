@@ -2,6 +2,7 @@ package ## no critic: Modules::RequireFilenameMatchesPackage
     TableDataRole::Health::Nutrient0; # hide from PAUSE indexer
 
 use strict;
+use utf8;
 
 use Role::Tiny;
 with 'TableDataRole::Source::AOH';
@@ -252,6 +253,84 @@ my $data = [
         category => 'mineral',
         default_unit => 'mcg',
     },
+
+    {
+        symbol => 'Energy',
+        eng_name => 'Energy',
+        ind_name => 'Energi',
+        category => 'energy',
+        default_unit => 'kcal',
+    },
+    {
+        symbol => 'Protein',
+        eng_name => 'Protein',
+        ind_name => 'Protein',
+        category => 'macronutrient',
+        default_unit => 'g',
+    },
+    {
+        symbol => 'Total_Fat',
+        eng_name => 'Total fat',
+        ind_name => 'Lemak total',
+        category => 'macronutrient',
+        default_unit => 'g',
+    },
+    {
+        symbol => 'Saturated_Fat',
+        eng_name => 'Saturated fat',
+        ind_name => 'Lemak jenuh',
+        category => 'macronutrient',
+        default_unit => 'g',
+    },
+    {
+        symbol => 'Cholesterol',
+        eng_name => 'Cholesterol',
+        ind_name => 'Kolesterol',
+        category => 'other',
+        default_unit => 'mg',
+    },
+    {
+        symbol => 'Linoleic_Acid',
+        eng_name => 'Linoleic acid',
+        ind_name => 'Asam linoleat',
+        category => 'fatty acid',
+        default_unit => 'g',
+    },
+    {
+        symbol => 'Alpha_Linoleic_Acid',
+        eng_name => 'ɑ-linoleic acid',
+        ind_name => 'Asam ɑ-linoleat',
+        category => 'fatty acid',
+        default_unit => 'g',
+    },
+    {
+        symbol => 'Carbohydrate',
+        eng_name => 'Total carbohydrate',
+        ind_name => 'Karbohidrat total',
+        category => 'macronutrient',
+        default_unit => 'g',
+    },
+    {
+        symbol => 'Dietary_Fiber',
+        eng_name => 'Dietary fiber',
+        ind_name => 'Serat pangan',
+        category => 'other',
+        default_unit => 'g',
+    },
+    {
+        symbol => 'L_Carnitine',
+        eng_name => 'L-Carnitine',
+        ind_name => 'L-Karnitin',
+        category => 'amino acid',
+        default_unit => 'mg',
+    },
+    {
+        symbol => 'Myo_Inositol',
+        eng_name => 'Myo-Inositol',
+        ind_name => 'Myo-Inositol',
+        category => 'sugar',
+        default_unit => 'mg',
+    },
 ];
 
 around new => sub {
@@ -275,7 +354,16 @@ sub get_table_def {
             symbol   => {pos=>0, schema=>'str*'},
             summary  => {pos=>1, schema=>'str'},
 
-            category => {pos=>2, schema=>['str*', in=>['vitamin', 'mineral', 'essential nutrient']]},
+            category => {pos=>2, schema=>['str*', in=>[
+                'vitamin',
+                'mineral',
+                'essential nutrient',
+                'macronutrient',
+                'fatty acid',
+                'amino acid',
+                'sugar',
+                'other',
+            ]]},
 
             eng_name    => {pos=>3, schema=>'str*'},
             eng_aliases => {pos=>4, schema=>'aos'},
