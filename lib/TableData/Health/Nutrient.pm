@@ -7,7 +7,38 @@ use utf8;
 use Role::Tiny;
 with 'TableDataRole::Source::AOH';
 
-my $data = [
+our $table_def = {
+    fields => {
+        symbol   => {pos=>0, schema=>'str*'},
+        summary  => {pos=>1, schema=>'str'},
+
+        category => {pos=>2, schema=>['str*', in=>[
+            'vitamin',
+            'mineral',
+            'essential nutrient',
+            'macronutrient',
+            'fatty acid',
+            'amino acid',
+            'sugar',
+            'other',
+        ]]},
+
+        eng_name    => {pos=>3, schema=>'str*'},
+        eng_aliases => {pos=>4, schema=>'aos'},
+        ind_name    => {pos=>5, schema=>'str*'},
+        ind_aliases => {pos=>6, schema=>'aos'},
+
+        default_unit => {pos=>7, schema=>'str*'},
+
+        water_soluble      => {pos=> 8, schema=>'bool'},
+        water_soluble_note => {pos=> 9, schema=>'str'},
+        fat_soluble        => {pos=>10, schema=>'bool'},
+        fat_soluble_note   => {pos=>11, schema=>'str'},
+    },
+    pk => 'symbol',
+};
+
+our $data = [
     # for the first row, make sure we mention all columns because
     # TableDataRole::Source::AOH uses the first row to enumerate the columns
     {
@@ -336,7 +367,14 @@ my $data = [
 around new => sub {
     my $orig = shift;
 
-    $orig->(@_, aoh => $data);
+    $orig->(
+        @_,
+        aoh => $data,
+        column_names => [
+            sort { $table_def->{fields}{$a}{pos} <=> $table_def->{fields}{$b}{pos} }
+            keys %{ $table_def->{fields} }
+        ],
+    );
 };
 
 package ## no critic: Modules::RequireFilenameMatchesPackage
@@ -346,40 +384,6 @@ use strict;
 
 use Role::Tiny::With;
 with 'TableDataRole::Health::Nutrient0';
-with 'TableDataRole::Spec::TableDef';
-
-sub get_table_def {
-    return +{
-        fields => {
-            symbol   => {pos=>0, schema=>'str*'},
-            summary  => {pos=>1, schema=>'str'},
-
-            category => {pos=>2, schema=>['str*', in=>[
-                'vitamin',
-                'mineral',
-                'essential nutrient',
-                'macronutrient',
-                'fatty acid',
-                'amino acid',
-                'sugar',
-                'other',
-            ]]},
-
-            eng_name    => {pos=>3, schema=>'str*'},
-            eng_aliases => {pos=>4, schema=>'aos'},
-            ind_name    => {pos=>5, schema=>'str*'},
-            ind_aliases => {pos=>6, schema=>'aos'},
-
-            default_unit => {pos=>7, schema=>'str*'},
-
-            water_soluble      => {pos=> 8, schema=>'bool'},
-            water_soluble_note => {pos=> 9, schema=>'str'},
-            fat_soluble        => {pos=>10, schema=>'bool'},
-            fat_soluble_note   => {pos=>11, schema=>'str'},
-        },
-        pk => 'symbol',
-    };
-}
 
 package ## no critic: Modules::RequireFilenameMatchesPackage
     TableDataRole::Health::Nutrient; # hide from PAUSE indexer
@@ -401,6 +405,11 @@ use strict;
 
 use Role::Tiny::With;
 with 'TableDataRole::Health::Nutrient';
+with 'TableDataRole::Spec::TableDef';
+
+sub get_table_def {
+    $TableDataRole::Health::Nutrient0::table_def;
+}
 
 # AUTHORITY
 # DATE
