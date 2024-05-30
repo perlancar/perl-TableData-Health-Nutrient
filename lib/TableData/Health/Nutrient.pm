@@ -10,9 +10,10 @@ with 'TableDataRole::Source::AOH';
 our $table_def = {
     fields => {
         symbol   => {pos=>0, schema=>'str*'},
-        summary  => {pos=>1, schema=>'str'},
+        aliases  => {pos=>1, schema=>'str*'}, # alternate symbols, comma-separated
+        summary  => {pos=>2, schema=>'str'},
 
-        category => {pos=>2, schema=>['str*', in=>[
+        category => {pos=>3, schema=>['str*', in=>[
             'vitamin',
             'mineral',
             'essential nutrient',
@@ -23,17 +24,17 @@ our $table_def = {
             'other',
         ]]},
 
-        eng_name    => {pos=>3, schema=>'str*'},
-        eng_aliases => {pos=>4, schema=>'aos'},
-        ind_name    => {pos=>5, schema=>'str*'},
-        ind_aliases => {pos=>6, schema=>'aos'},
+        eng_name    => {pos=>4, schema=>'str*'},
+        eng_aliases => {pos=>5, schema=>'aos'},
+        ind_name    => {pos=>6, schema=>'str*'},
+        ind_aliases => {pos=>7, schema=>'aos'},
 
-        default_unit => {pos=>7, schema=>'str*'},
+        default_unit => {pos=>8, schema=>'str*'},
 
-        water_soluble      => {pos=> 8, schema=>'bool'},
-        water_soluble_note => {pos=> 9, schema=>'str'},
-        fat_soluble        => {pos=>10, schema=>'bool'},
-        fat_soluble_note   => {pos=>11, schema=>'str'},
+        water_soluble      => {pos=> 9, schema=>'bool'},
+        water_soluble_note => {pos=>10, schema=>'str'},
+        fat_soluble        => {pos=>11, schema=>'bool'},
+        fat_soluble_note   => {pos=>12, schema=>'str'},
     },
     pk => 'symbol',
 };
@@ -43,6 +44,7 @@ our $data = [
     # TableDataRole::Source::AOH uses the first row to enumerate the columns
     {
         symbol => 'VA',
+        aliases => '',
         summary => undef,
 
         category => 'vitamin',
@@ -86,6 +88,7 @@ our $data = [
     },
     {
         symbol => 'VB1',
+        aliases => 'Thiamine',
         eng_name => 'Vitamin B1',
         eng_aliases => ['Thiamine'],
         ind_name => 'Vitamin B1',
@@ -96,6 +99,7 @@ our $data = [
     },
     {
         symbol => 'VB2',
+        aliases => 'Riboflavin',
         eng_name => 'Vitamin B2',
         eng_aliases => ['Riboflavin'],
         ind_name => 'Vitamin B2',
@@ -106,6 +110,7 @@ our $data = [
     },
     {
         symbol => 'VB3',
+        aliases => 'Niacin',
         eng_name => 'Vitamin B3',
         eng_aliases => ['Niacin'],
         ind_name => 'Vitamin B3',
@@ -116,6 +121,7 @@ our $data = [
     },
     {
         symbol => 'VB5',
+        aliases => 'Pantothenic_Acid',
         eng_name => 'Pantothenic acid',
         eng_aliases => ['Vitamin B5'],
         ind_name => 'Asam pantotenat',
@@ -126,6 +132,7 @@ our $data = [
     },
     {
         symbol => 'VB6',
+        aliases => 'Pyridoxine',
         summary => 'Vitamin B6 refers to a group of six vitamers, one of which is pyridoxine',
         eng_name => 'Vitamin B6',
         eng_aliases => ['Pyridoxine'],
@@ -137,6 +144,7 @@ our $data = [
     },
     {
         symbol => 'VB9',
+        aliases => 'Folate',
         eng_name => 'Folate',
         eng_aliases => ['Vitamin B9', 'Folacin'],
         ind_name => 'Folat',
@@ -147,6 +155,7 @@ our $data = [
     },
     {
         symbol => 'VB12',
+        aliases => 'Cobalamin',
         eng_name => 'Vitamin B12',
         eng_aliases => ['Cobalamin'],
         ind_name => 'Vitamin B12',
@@ -157,6 +166,7 @@ our $data = [
     },
     {
         symbol => 'VB7',
+        aliases => 'Biotin',
         eng_name => 'Biotin',
         eng_aliases => ['Vitamin B7', 'Vitamin H'],
         ind_name => 'Biotin',
@@ -167,6 +177,7 @@ our $data = [
     },
     {
         symbol => 'VB4',
+        aliases => 'Choline',
         eng_name => 'Choline',
         eng_aliases => ['Vitamin B4'],
         ind_name => 'Kolin',
