@@ -339,9 +339,23 @@ our $data = [
         default_unit => 'g',
     },
     {
+        symbol => 'Omega6',
+        eng_name => 'Omega-6 fatty acids',
+        ind_name => 'Asam lemak omega-6',
+        category => 'fatty acid',
+        default_unit => 'g',
+    },
+    {
         symbol => 'Alpha_Linoleic_Acid',
         eng_name => 'ɑ-linoleic acid',
         ind_name => 'Asam ɑ-linoleat',
+        category => 'fatty acid',
+        default_unit => 'g',
+    },
+    {
+        symbol => 'Omega3',
+        eng_name => 'Omega-3 fatty acids',
+        ind_name => 'Asam lemak omega-3',
         category => 'fatty acid',
         default_unit => 'g',
     },
