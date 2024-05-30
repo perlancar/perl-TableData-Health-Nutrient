@@ -387,6 +387,14 @@ our $data = [
         category => 'sugar',
         default_unit => 'mg',
     },
+    {
+        symbol => 'H2O',
+        aliases => 'Water',
+        eng_name => 'Water',
+        ind_name => 'Air',
+        category => 'other',
+        default_unit => 'ml',
+    },
 ];
 
 around new => sub {
