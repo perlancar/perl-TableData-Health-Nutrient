@@ -346,9 +346,9 @@ our $data = [
         default_unit => 'g',
     },
     {
-        symbol => 'Alpha_Linoleic_Acid',
-        eng_name => 'ɑ-linoleic acid',
-        ind_name => 'Asam ɑ-linoleat',
+        symbol => 'Alpha_Linolenic_Acid',
+        eng_name => 'ɑ-linolenic acid',
+        ind_name => 'Asam ɑ-linolenat',
         category => 'fatty acid',
         default_unit => 'g',
     },
