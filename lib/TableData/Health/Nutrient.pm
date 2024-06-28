@@ -295,7 +295,29 @@ our $data = [
         category => 'mineral',
         default_unit => 'mcg',
     },
+    {
+        symbol => 'B',
+        eng_name => 'Boron',
+        ind_name => 'Boron',
+        category => 'mineral',
+        default_unit => 'mg',
+    },
+    {
+        symbol => 'Mo',
+        eng_name => 'Molybdenum',
+        ind_name => 'Molibdenum',
+        category => 'mineral',
+        default_unit => 'mcg',
+    },
+    {
+        symbol => 'V',
+        eng_name => 'Vanadium',
+        ind_name => 'Vanadium',
+        category => 'mineral',
+        default_unit => 'mcg',
+    },
 
+    # other
     {
         symbol => 'Energy',
         eng_name => 'Energy',
