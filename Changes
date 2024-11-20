@@ -1,3 +1,15 @@
+0.005   2024-11-20  Released-By: PERLANCAR; Urgency: medium
+
+        - Add minerals: B, Mo, V (recognized in BPOM supplement
+          regulation).
+
+        - Add nutrient: H2O (water).
+
+        - Tweak some aliases.
+
+        - add Vitamin PP as english alias for Niacin/VB3.
+
+
 0.004   2024-05-30  Released-By: PERLANCAR; Urgency: medium
 
         - [bugfix] Fix name of alpha-linolenic acid.
