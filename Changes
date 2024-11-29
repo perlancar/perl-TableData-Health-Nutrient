@@ -1,3 +1,15 @@
+0.005.1 2024-11-20  Released-By: PERLANCAR; Urgency: medium
+
+        - Add minerals: B, Mo, V (recognized in BPOM supplement
+          regulation).
+
+        - Add nutrient: H2O (water).
+
+        - Tweak some aliases.
+
+        - add Vitamin PP as english alias for Niacin/VB3.
+
+
 0.005   2024-06-28  Released-By: PERLANCAR; Urgency: medium
 
         - Add minerals: B, Mo, V (recognized in Indonesian BPOM supplement
